@@ -1,4 +1,4 @@
-# Plagiarism Project, Machine Learning Deployment
+# Plagiarism Detector, Machine Learning Deployment on AWS: testing SVM, PyTorch NN, Gaussian Process and Naive Baye's Classifers
 
 This repository contains code and associated files for deploying a plagiarism detector using AWS SageMaker. In this project, you will be tasked with building a plagiarism detector that examines a text file and performs binary classification; labeling that file as either *plagiarized* or *not*, depending on how similar that text file is to a provided source text. Detecting plagiarism is an active area of research; the task is non-trivial and the differences between paraphrased answers and original work are often not so obvious.
 
@@ -24,6 +24,18 @@ This project will be broken down into three main notebooks:
 * Define a binary classification model and a training script.
 * Train your model and deploy it using SageMaker.
 * Evaluate your deployed classifier.
+
+**`source_sklearn`**
+
+* `train_gpc.py`: Hyperparameter tuning job for a Gaussian Process Classifier, tuning for Isotropic and Anisotropic kernels.
+* `train_nbc.py`: Hyperparameter tuning job for Naive Baye's Classifier, tuning for variance smoothing.
+* `train_svc.py`: Hyperpatameter tuning job for a Support Vector Machine Classifier, tuning for kernel type (linear or radial basis function kernel), C and gamma (auto or scale).
+
+**`source_pytorch`**
+
+* `model.py`: Neural Net classifier model, composed of three layers, followed by ReLU nonlinearities and Dropout, except for the ouput layer, which uses only a sigmoid activation function for classification purposes.
+* `predict.py`: Prediction loop for the SageMaker endpoint.
+* `train.py`: Training loop for the model to be used by SageMaker.
 
 ## Setup
 
